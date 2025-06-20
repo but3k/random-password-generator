@@ -1,21 +1,32 @@
 import random
 import string
+from colorama import init, Fore, Style
 import os
 import time
 
-print("Random password generator")
+#First methods
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-use_digits = input("Add numbers? (y/n) ").lower() == 'y'
-use_symbols = input("Add symbols? (y/n) ").lower() == 'y'
+def loading_animation(message="Generating...", dots=3, delay=0.5):
+    for i in range(dots):
+        print(f"{Fore.CYAN}{message}{'.' * (i+1)}", end= '\r')
+        time.sleep(delay)
+    clear_screen
 
-chars = string.ascii_lowercase
-if use_digits:
-    chars += string.digits
-if use_symbols:
-    chars += string.punctuation    
+#Generator
+def generate_password(lenght):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for _ in range(lenght))
 
-lenght = int(input("How long does your password need to be? "))
-password = ''.join(random.choice(chars) for _ in range(lenght))
+clear_screen
+print(f"{Fore.YELLOW} Welcome in RPG (Random Password Generator) \n")
 
-print("Your password is " + password)
-input("Press enter to exit...")
+try:
+    length = int(input(f"{Fore.GREEN} Enter password lenght: "))
+    print()
+    loading_animation()
+    password = generate_password(length)
+    print(f"{Fore.MAGENTA} Your password is: \n\n{Fore.WHITE + Style.BRIGHT}{password}\n")
+except ValueError:
+    print(f"{Fore.RED} Please enter valid number!") 

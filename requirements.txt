@@ -1,1 +1,1 @@
-No requirements needed
+colorama=<0.4.6>
