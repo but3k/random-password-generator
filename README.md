@@ -1,4 +1,4 @@
-Simple (and my first) Python application that generates random passwords with options to include letters, digits, and symbols.
+Simple (and my first) Python application that generates random passwords with options to include digits and symbols.
 
 Base features:
 - Set password length
